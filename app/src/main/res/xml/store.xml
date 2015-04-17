@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resourse>
+
+    <place id="1" name="电子科技大学清水河校区" />
+    <place id="2" name="电子科技大学沙河校区"  />
+
+    <circle id="1" name="商业街" belongPlace="1" />
+    <circle id="2" name="顺江" belongPlace="1" />
+    <circle id="3" name="龙湖" belongPlace="1" />
+    <circle id="4" name="思学苑" belongPlace="1" />
+    <circle id="5" name="银杏苑" belongPlace="1" />
+    <circle id="6" name="第五大道" belongPlace="2" />
+
+    <restaurant id="1" name="三道宴" belongCircle="1" category="综合"  way="点菜"/>
+    <restaurant id="2" name="香辣食府" belongCircle="1" category="综合"  way="点菜"/>
+    <restaurant id="3" name="面对面" belongCircle="1" category="面" way="一人一份"/>
+    <restaurant id="4" name="恋客" belongCircle="1" category="烧烤" way="一人一份"/>
+    <restaurant id="5" name="全家福" belongCircle="1" category="综合"  way="点菜"/>
+    <restaurant id="6" name="千椒百味" belongCircle="1" category="综合"  way="点菜"/>
+    <restaurant id="7" name="粤式烧腊饭" belongCircle="1" category="饭"  way="一人一份"/>
+    <restaurant id="8" name="兰州拉面" belongCircle="1" category="面"  way="一人一份"/>
+    <restaurant id="9" name="沙县小吃" belongCircle="1" category="小吃"  way="一人一份"/>
+    <restaurant id="10" name="隆士基" belongCircle="1" category="西式快餐"  way="一人一份"/>
+    <restaurant id="11" name="士林鸡排" belongCircle="1" category="中式快餐"  way="一人一份"/>
+
+    <restaurant id="12" name="乐山翘脚牛肉" belongCircle="2" category="火锅"  way="点菜"/>
+    <restaurant id="13" name="吴记冒菜" belongCircle="2" category="冒菜"  way="点菜"/>
+    <restaurant id="14" name="自助烤肉" belongCircle="2" category="烧烤"  way="一人一份"/>
+    <restaurant id="15" name="姐妹冒菜" belongCircle="2" category="冒菜"  way="点菜"/>
+    <restaurant id="16" name="帽牌货冒菜" belongCircle="2" category="冒菜"  way="点菜"/>
+    <restaurant id="17" name="胖哥青花椒冷锅火锅鱼" belongCircle="2" category="火锅"  way="点菜"/>
+    <restaurant id="18" name="神技冒菜" belongCircle="2" category="冒菜"  way="点菜"/>
+    <restaurant id="19" name="三鑫园火锅" belongCircle="2" category="火锅"  way="点菜"/>
+    <restaurant id="20" name="连锅庄" belongCircle="2" category="火锅"  way="点菜"/>
+    <restaurant id="21" name="香满园" belongCircle="2" category=""  way=""/>
+    <restaurant id="22" name="福园饭店" belongCircle="2" category=""  way=""/>
+    <restaurant id="23" name="锅锅香自助火锅" belongCircle="2" category=""  way=""/>
+    <restaurant id="24" name="老地方饭店" belongCircle="2" category=""  way=""/>
+    <!--<restaurant id="25" name="one碗牛肉" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="26" name="老地方家常豆花" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="27" name="快乐汉堡" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="28" name="大懒人冒菜" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="29" name="大锅串串香" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="30" name="茶不思" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="31" name="新一家冒菜" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="32" name="多味道小吃店" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="33" name="简易自选冒菜" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="34" name="五姐面馆" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="35" name="北巷子火锅鱼" belongCircle="2" category="火锅"  way=""/>-->
+    <!--<restaurant id="36" name="馄饨大王" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="37" name="哈尔滨风味水饺" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="38" name="渝记老麻抄手" belongCircle="2" category="小吃"  way=""/>-->
+    <!--<restaurant id="39" name="巴哥特色米线" belongCircle="2" category="面"  way=""/>-->
+    <!--<restaurant id="40" name="张砂锅米线" belongCircle="2" category="面"  way=""/>-->
+    <!--<restaurant id="41" name="北方饺子馆" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="42" name="重庆胡和记面庄" belongCircle="2" category=""  way=""/>-->
+    <!--<restaurant id="43" name="万州烤鱼" belongCircle="2" category=""  way=""/>-->
+
+    <restaurant id="44" name="学子餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
+    <restaurant id="45" name="思源餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
+    <restaurant id="46" name="家园餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
+
+    <restaurant id="47" name="银桦餐厅" belongCircle="5" category="饭堂"  way="一人一份"/>
+    <restaurant id="48" name="紫荆餐厅" belongCircle="5" category="饭堂"  way="一人一份"/>
+    <restaurant id="49" name="芙蓉餐厅" belongCircle="5" category="饭堂"  way="一人一份"/>
+    <restaurant id="50" name="旁边清真餐厅" belongCircle="5" category="饭堂"  way="一人一份"/>
+
+    
+</resourse>

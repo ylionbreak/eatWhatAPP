@@ -1,0 +1,79 @@
+package science.hzl.random;
+
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+
+import java.util.List;
+
+/**
+ * Created by YLion on 2015/4/12.
+ */
+public class CheckBoxAdapter extends BaseAdapter {
+	List<String> restaurantsList;
+	private LayoutInflater mInflater;
+
+	//	public CheckBoxAdapter(Context context,List<CheckBox> _checkBoxList){
+//		this.mInflater = LayoutInflater.from(context);
+//		this.checkBoxList = _checkBoxList;
+//	}
+	public CheckBoxAdapter(Context context, List<String> _restaurantsLis) {
+		this.mInflater = LayoutInflater.from(context);
+		this.restaurantsList = _restaurantsLis;
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		//return 0;
+		return restaurantsList.size();
+	}
+
+	@Override
+	public Object getItem(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long getItemId(int arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		ViewHolder holder = null;
+		if (convertView == null) {
+			holder = new ViewHolder();
+			convertView = mInflater.inflate(R.layout.checkbox_layout, null);
+			holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkbox);
+			holder.checkBox.setText(restaurantsList.get(position));
+			holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if(isChecked){
+						DBManager.changeChecked(restaurantsList.get(position),"1");
+					}else{
+						DBManager.changeChecked(restaurantsList.get(position),"0");
+					}
+				}
+			});
+			convertView.setTag(holder);
+
+		} else {
+			holder = (ViewHolder) convertView.getTag();
+		}
+		return convertView;
+	}
+
+	public final class ViewHolder {
+		public CheckBox checkBox;
+	}
+
+}

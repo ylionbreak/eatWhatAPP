@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                tools:context=".MainActivity">
+
+
+
+    <science.hzl.random.RestaurantListView
+        android:id="@+id/checkbox_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="4dp"
+        android:background="@android:color/white"/>
+
+    <ListView
+        android:id="@+id/circle_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="4dp"/>
+
+    <ListView
+        android:id="@+id/place_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="4dp"/>
+    <TextView
+        android:id="@+id/result_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:text="@string/none"
+        android:textSize="40sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@android:color/holo_red_dark"/>
+    <Button
+        android:id="@+id/random_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:background="@drawable/random_button"
+        android:text="随机选择"/>
+
+    <Button
+        android:layout_marginRight="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/set_star_button"
+        android:background="@drawable/star_button"
+        android:layout_marginBottom="19dp"
+        android:layout_above="@+id/random_choose"
+        android:layout_alignRight="@+id/random_choose"
+        android:layout_alignEnd="@+id/random_choose"/>
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/get_star_button"
+        android:background="@drawable/star_button"
+        android:layout_alignBottom="@+id/random_choose"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
