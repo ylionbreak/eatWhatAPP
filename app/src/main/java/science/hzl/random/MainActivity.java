@@ -27,7 +27,7 @@ import java.util.List;
 
 import at.markushi.ui.RevealColorView;
 
-//更新+数据库完善 actionbar 配色 app更新bmob logo star页面
+//更新+数据库完善+bmob actionbar 配色 logo star页面
 
 //方法首字母小写
 //变量全小写
@@ -96,7 +96,7 @@ public class MainActivity extends ActionBarActivity {
 		restaurantListView.setAdapter(checkBoxAdapter);
 		//
 		revealColorView = (RevealColorView) findViewById(R.id.reveal);
-		backgroundColor = Color.parseColor("#212121");
+		backgroundColor = Color.parseColor("#FFFFFF");
 		//设置按钮
 		getResult.setOnClickListener(new View.OnClickListener() {
 			@Override

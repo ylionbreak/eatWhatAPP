@@ -5,7 +5,11 @@
                 android:background="@android:color/white"
                 tools:context=".MainActivity">
 
-
+    <at.markushi.ui.RevealColorView
+        android:id="@+id/reveal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"/>
 
     <ListView
         android:id="@+id/checkbox_listview"
@@ -45,6 +49,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
         android:background="@drawable/random_button"
+        android:tag="#F5A32E"
         android:text="随机选择"/>
 
     <Button
@@ -66,10 +71,6 @@
         android:layout_alignBottom="@+id/random_choose"
         android:layout_centerHorizontal="true"/>
 
-    <at.markushi.ui.RevealColorView
-        android:id="@+id/reveal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFA726"/>
+
 
 </RelativeLayout>
