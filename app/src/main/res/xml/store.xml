@@ -36,25 +36,25 @@
     <restaurant id="22" name="福园饭店" belongCircle="2" category=""  way=""/>
     <restaurant id="23" name="锅锅香自助火锅" belongCircle="2" category=""  way=""/>
     <restaurant id="24" name="老地方饭店" belongCircle="2" category=""  way=""/>
-    <!--<restaurant id="25" name="one碗牛肉" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="26" name="老地方家常豆花" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="27" name="快乐汉堡" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="28" name="大懒人冒菜" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="29" name="大锅串串香" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="30" name="茶不思" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="31" name="新一家冒菜" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="32" name="多味道小吃店" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="33" name="简易自选冒菜" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="34" name="五姐面馆" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="35" name="北巷子火锅鱼" belongCircle="2" category="火锅"  way=""/>-->
-    <!--<restaurant id="36" name="馄饨大王" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="37" name="哈尔滨风味水饺" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="38" name="渝记老麻抄手" belongCircle="2" category="小吃"  way=""/>-->
-    <!--<restaurant id="39" name="巴哥特色米线" belongCircle="2" category="面"  way=""/>-->
-    <!--<restaurant id="40" name="张砂锅米线" belongCircle="2" category="面"  way=""/>-->
-    <!--<restaurant id="41" name="北方饺子馆" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="42" name="重庆胡和记面庄" belongCircle="2" category=""  way=""/>-->
-    <!--<restaurant id="43" name="万州烤鱼" belongCircle="2" category=""  way=""/>-->
+    <restaurant id="25" name="one碗牛肉" belongCircle="2" category=""  way=""/>
+    <restaurant id="26" name="老地方家常豆花" belongCircle="2" category=""  way=""/>
+    <restaurant id="27" name="快乐汉堡" belongCircle="2" category=""  way=""/>
+    <restaurant id="28" name="大懒人冒菜" belongCircle="2" category=""  way=""/>
+    <restaurant id="29" name="大锅串串香" belongCircle="2" category=""  way=""/>
+    <restaurant id="30" name="茶不思" belongCircle="2" category=""  way=""/>
+    <restaurant id="31" name="新一家冒菜" belongCircle="2" category=""  way=""/>
+    <restaurant id="32" name="多味道小吃店" belongCircle="2" category=""  way=""/>
+    <restaurant id="33" name="简易自选冒菜" belongCircle="2" category=""  way=""/>
+    <restaurant id="34" name="五姐面馆" belongCircle="2" category=""  way=""/>
+    <restaurant id="35" name="北巷子火锅鱼" belongCircle="2" category="火锅"  way=""/>
+    <restaurant id="36" name="馄饨大王" belongCircle="2" category=""  way=""/>
+    <restaurant id="37" name="哈尔滨风味水饺" belongCircle="2" category=""  way=""/>
+    <restaurant id="38" name="渝记老麻抄手" belongCircle="2" category="小吃"  way=""/>
+    <restaurant id="39" name="巴哥特色米线" belongCircle="2" category="面"  way=""/>
+    <restaurant id="40" name="张砂锅米线" belongCircle="2" category="面"  way=""/>
+    <restaurant id="41" name="北方饺子馆" belongCircle="2" category=""  way=""/>
+    <restaurant id="42" name="重庆胡和记面庄" belongCircle="2" category=""  way=""/>
+    <restaurant id="43" name="万州烤鱼" belongCircle="2" category=""  way=""/>
 
     <restaurant id="44" name="学子餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
     <restaurant id="45" name="思源餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>

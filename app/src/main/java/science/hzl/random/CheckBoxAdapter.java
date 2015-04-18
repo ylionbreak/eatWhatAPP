@@ -15,14 +15,11 @@ import java.util.List;
  * Created by YLion on 2015/4/12.
  */
 public class CheckBoxAdapter extends BaseAdapter {
-	List<String> restaurantsList;
+	List<Restaurant> restaurantsList;
 	private LayoutInflater mInflater;
 
-	//	public CheckBoxAdapter(Context context,List<CheckBox> _checkBoxList){
-//		this.mInflater = LayoutInflater.from(context);
-//		this.checkBoxList = _checkBoxList;
-//	}
-	public CheckBoxAdapter(Context context, List<String> _restaurantsLis) {
+
+	public CheckBoxAdapter(Context context, List<Restaurant> _restaurantsLis) {
 		this.mInflater = LayoutInflater.from(context);
 		this.restaurantsList = _restaurantsLis;
 	}
@@ -49,26 +46,26 @@ public class CheckBoxAdapter extends BaseAdapter {
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		ViewHolder holder = null;
-		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = mInflater.inflate(R.layout.checkbox_layout, null);
 			holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkbox);
-			holder.checkBox.setText(restaurantsList.get(position));
+			holder.checkBox.setText(restaurantsList.get(position).name);
+			if ( DBManager.isChecked(restaurantsList.get(position).name) ) {
+				holder.checkBox.setChecked(true);
+			}else{
+				holder.checkBox.setChecked(false);
+			}
 			holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 					if(isChecked){
-						DBManager.changeChecked(restaurantsList.get(position),"1");
+						DBManager.changeChecked(restaurantsList.get(position).name,"1");
 					}else{
-						DBManager.changeChecked(restaurantsList.get(position),"0");
+						DBManager.changeChecked(restaurantsList.get(position).name,"0");
 					}
 				}
 			});
 			convertView.setTag(holder);
-
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}
 		return convertView;
 	}
 

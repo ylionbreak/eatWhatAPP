@@ -21,6 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.github.markushi:android-ui:1.2'
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile files('C:/Users/YLion/AndroidStudioProjects/Random/libs/xmlpull_1_0_5.jar')
 }

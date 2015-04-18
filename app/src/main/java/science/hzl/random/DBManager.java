@@ -1,10 +1,14 @@
 package science.hzl.random;
 
 import android.content.Context;
+import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +19,7 @@ import java.util.List;
 public class DBManager {
 	private MySQLite helper;
 	static private SQLiteDatabase db;
-
+	private Context context;
 	public DBManager(Context context, int version) {
 		helper = new MySQLite(context, version);
 		//因为getWritableDatabase内部调用了mContext.openOrCreateDatabase(mName, 0, mFactory);
@@ -24,6 +28,7 @@ public class DBManager {
 	}
 
 	public DBManager(Context context) {
+		this.context=context;
 		helper = new MySQLite(context);
 		db = helper.getWritableDatabase();
 	}
@@ -61,7 +66,7 @@ public class DBManager {
 	public void addStar(){
 		db.beginTransaction();
 		try {
-			db.execSQL("INSERT INTO star VALUES(null, ?)", new Object[]{selectCheckedRestaurantData()});
+			db.execSQL("INSERT INTO star VALUES(null, ?)", new Object[]{selectCheckedIdToString()});
 			db.setTransactionSuccessful();
 		} finally {
 			db.endTransaction();
@@ -82,7 +87,7 @@ public class DBManager {
 		return strings;
 	}
 
-	public List<Place> placeQuery() {
+	public List<Place> placeQueryAll() {
 		ArrayList<Place> places = new ArrayList<>();
 		Cursor c = db.rawQuery("SELECT * FROM place", null);
 		while (c.moveToNext()) {
@@ -95,7 +100,7 @@ public class DBManager {
 		return places;
 	}
 
-	public List<Circle> circleQuery() {
+	public List<Circle> circleQueryAll() {
 		ArrayList<Circle> circles = new ArrayList<>();
 		Cursor c = db.rawQuery("SELECT * FROM circle", null);
 		while (c.moveToNext()) {
@@ -109,7 +114,7 @@ public class DBManager {
 		return circles;
 	}
 
-	public List<Restaurant> restaurantQuery() {
+	public List<Restaurant> restaurantQueryAll() {
 		ArrayList<Restaurant> restaurants = new ArrayList<>();
 		Cursor c = db.rawQuery("SELECT * FROM restaurant ",null);
 		while (c.moveToNext()) {
@@ -139,7 +144,7 @@ public class DBManager {
 		return strings1;
 	}
 
-	public List<String> selectChecked() {
+	public List<String> selectCheckedToList() {
 		List<String> strings =new ArrayList<>();
 		Cursor c = db.rawQuery("SELECT * FROM restaurant where belongCircle = ? and isCheck = '1' ",new String[]{String.valueOf(MainActivity.selectCircle)});
 		while (c.moveToNext()) {
@@ -149,7 +154,7 @@ public class DBManager {
 		return strings;
 	}
 
-	public String selectCheckedRestaurantData() {
+	public String selectCheckedIdToString() {
 		Cursor c = db.rawQuery("SELECT * FROM restaurant where belongCircle = ? and isCheck = '1' ",new String[]{String.valueOf(MainActivity.selectCircle)});
 		StringBuilder stringBuilder =new StringBuilder();
 		while (c.moveToNext()) {
@@ -162,6 +167,18 @@ public class DBManager {
 		}
 		c.close();
 		return stringBuilder.toString();
+	}
+
+	public static boolean isChecked(String name){
+		Cursor c = db.rawQuery("SELECT * FROM restaurant where name = ? ",new String[]{name});
+		c.moveToNext();
+			if(Integer.parseInt( c.getString(c.getColumnIndex("isCheck")) )==1){
+				c.close();
+				return true;
+			}else{
+				c.close();
+				return false;
+			}
 	}
 
 	static public void changeChecked(String string1,String string2){
@@ -181,5 +198,32 @@ public class DBManager {
 		db.execSQL("CREATE TABLE IF NOT EXISTS circle" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR ,belongPlace INT)");
 		db.execSQL("CREATE TABLE IF NOT EXISTS restaurant" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR ,belongCircle INT,isCheck VARCHAR)");
 		db.execSQL("CREATE TABLE IF NOT EXISTS star" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, starrestaurant VARCHAR)");
+	}
+	//加入数据库
+	public void add() {
+		delete();
+		XmlPullParser xmlReader = context.getResources().getXml(R.xml.store);
+		try {
+			while (xmlReader.getEventType() != XmlResourceParser.END_DOCUMENT) {
+				if (xmlReader.getEventType() == XmlResourceParser.START_TAG) {
+					String tagName = xmlReader.getName();
+					if (tagName.equals("place")) {
+						Place place = new Place(Integer.parseInt(xmlReader.getAttributeValue(0)), xmlReader.getAttributeValue(1));
+						addPlace(place);
+					} else if (tagName.equals("circle")) {
+						Circle circle = new Circle(Integer.parseInt(xmlReader.getAttributeValue(0)), xmlReader.getAttributeValue(1), Integer.parseInt(xmlReader.getAttributeValue(2)));
+						addCircle(circle);
+					} else if (tagName.equals("restaurant")) {
+						Restaurant restaurant = new Restaurant(Integer.parseInt(xmlReader.getAttributeValue(0)), xmlReader.getAttributeValue(1), Integer.parseInt(xmlReader.getAttributeValue(2)));
+						addRestaurant(restaurant);
+					}
+				}
+				xmlReader.next();
+			}
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

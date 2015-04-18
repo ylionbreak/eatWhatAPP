@@ -1,7 +1,10 @@
 package science.hzl.random;
 
-import android.app.ActionBar;
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.XmlResourceParser;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -9,15 +12,10 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -27,12 +25,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-//声明在前还是在后
-//对象数组
-//什么要自己开一个类
-//主方法很多怎么办
+import at.markushi.ui.RevealColorView;
 
-//更新+数据库完善 actionbar 配色 种类 app更新bmob logo star页面
+//更新+数据库完善 actionbar 配色 app更新bmob logo star页面
 
 //方法首字母小写
 //变量全小写
@@ -44,19 +39,24 @@ public class MainActivity extends ActionBarActivity {
 	static PlaceListViewAdapter placeListViewAdapter;
 	static CircleListViewAdapter circleListViewAdapter;
 	static CheckBoxAdapter checkBoxAdapter;
-	RestaurantListView restaurantListView;
+	ListView restaurantListView;
 	ListView placeListView;
 	ListView circleListView;
 	MyAnimation myAnimation;
 	static Button getResult;
 	static Button setStarButton;
 	static Button getStarButton;
-	static private List<String> restaurantList;
+	static private List<Restaurant> restaurantList;
 	static private List<Circle> circleList;
 	static private List<Place> placeList;
 	static private DBManager dataManager;
 	static public int currentPage =1;
 	TextView RandomResult;
+
+	private View selectedView;
+	private RevealColorView revealColorView;
+	private int backgroundColor;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,38 +66,59 @@ public class MainActivity extends ActionBarActivity {
 		restaurantList = new ArrayList<>();
 		dataManager = new DBManager(this);
 		myAnimation=new MyAnimation();
-		add();
+		//判断是否第一次使用
+		SharedPreferences sharedPreferences= getSharedPreferences("first",ActionBarActivity.MODE_PRIVATE);
+		Boolean firstUsed =sharedPreferences.getBoolean("firstUsed",false);
+		if(!firstUsed) {
+			SharedPreferences.Editor editor = sharedPreferences.edit();
+			editor.putBoolean("firstUsed", true);
+			Log.e("x","write!!!!!!!!!!");
+			editor.apply();
+			dataManager.add();
+		}
 		//初始化界面
-		RandomResult = (TextView) findViewById(R.id.result_text);
-		getResult = (Button) findViewById(R.id.random_choose);
-		getResult.setVisibility(View.INVISIBLE);
-		getStarButton =(Button)findViewById(R.id.get_star_button);
-		setStarButton =(Button)findViewById(R.id.set_star_button);
+		getResult          = (Button)   findViewById(R.id.random_choose);
+		getStarButton      = (Button)   findViewById(R.id.get_star_button);
+		setStarButton      = (Button)   findViewById(R.id.set_star_button);
+		RandomResult       = (TextView) findViewById(R.id.result_text);
+		placeListView      = (ListView) findViewById(R.id.place_listview);
+		circleListView     = (ListView) findViewById(R.id.circle_listview);
+		restaurantListView = (ListView) findViewById(R.id.checkbox_listview);
 		setStarButton.setVisibility(View.INVISIBLE);
+		getResult.setVisibility(View.INVISIBLE);
 		//设置
-		placeListView = (ListView) findViewById(R.id.place_listview);
-		circleListView = (ListView) findViewById(R.id.circle_listview);
-		restaurantListView = (RestaurantListView) findViewById(R.id.checkbox_listview);
 		setPlace();
 		placeListViewAdapter = new PlaceListViewAdapter(this, placeList, placeListView,circleListView);
 		placeListView.setAdapter(placeListViewAdapter);
-		//设置circleListView
 		circleListViewAdapter = new CircleListViewAdapter(this, circleList, circleListView, restaurantListView);
 		circleListView.setAdapter(circleListViewAdapter);
-		//设置restaurantListView
 		checkBoxAdapter = new CheckBoxAdapter(this, restaurantList);
 		restaurantListView.setAdapter(checkBoxAdapter);
+		//
+		revealColorView = (RevealColorView) findViewById(R.id.reveal);
+		backgroundColor = Color.parseColor("#212121");
 		//设置按钮
 		getResult.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Log.e("x","xxxxx");
+				final int color = getColor(v);
+				final Point p = getLocationInView(revealColorView, v);
+
+				if (selectedView == v) {
+					revealColorView.hide(p.x, p.y, backgroundColor, 0, 300, null);
+					selectedView = null;
+				} else {
+					revealColorView.reveal(p.x, p.y, color, v.getHeight() / 2, 340, null);
+					selectedView = v;
+				}
+
 				RandomChoose Randomchoose = new RandomChoose();
 				restaurantListView.setVisibility(View.GONE);
 				RandomResult.setVisibility(View.VISIBLE);
-				RandomResult.setText(Randomchoose.getRandomChooseResult(dataManager.selectChecked()));
+				RandomResult.setText(Randomchoose.getRandomChooseResult(dataManager.selectCheckedToList()));
 			}
 		});
-		//////
 		setStarButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -108,7 +129,6 @@ public class MainActivity extends ActionBarActivity {
 				}
 			}
 		});
-		////////
 		getStarButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -132,37 +152,11 @@ public class MainActivity extends ActionBarActivity {
 		dataManager.closeDB();
 	}
 
-	//加入数据库
-	public void add() {
-		dataManager.delete();
-		XmlPullParser xmlReader = getResources().getXml(R.xml.store);
-		try {
-			while (xmlReader.getEventType() != XmlResourceParser.END_DOCUMENT) {
-				if (xmlReader.getEventType() == XmlResourceParser.START_TAG) {
-					String tagName = xmlReader.getName();
-					if (tagName.equals("place")) {
-						Place place = new Place(Integer.parseInt(xmlReader.getAttributeValue(0)), xmlReader.getAttributeValue(1));
-						dataManager.addPlace(place);
-					} else if (tagName.equals("circle")) {
-						Circle circle = new Circle(Integer.parseInt(xmlReader.getAttributeValue(0)), xmlReader.getAttributeValue(1), Integer.parseInt(xmlReader.getAttributeValue(2)));
-						dataManager.addCircle(circle);
-					} else if (tagName.equals("restaurant")) {
-						Restaurant restaurant = new Restaurant(Integer.parseInt(xmlReader.getAttributeValue(0)), xmlReader.getAttributeValue(1), Integer.parseInt(xmlReader.getAttributeValue(2)));
-						dataManager.addRestaurant(restaurant);
-					}
-				}
-				xmlReader.next();
-			}
-		} catch (XmlPullParserException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+
 
 	private void setPlace() {
 		placeList.clear();
-		for (Iterator iter = dataManager.placeQuery().iterator(); iter.hasNext(); ) {
+		for (Iterator iter = dataManager.placeQueryAll().iterator(); iter.hasNext(); ) {
 			Place place  =(Place)iter.next();
 			placeList.add(place);
 		}
@@ -170,7 +164,7 @@ public class MainActivity extends ActionBarActivity {
 
 	public static void setCircle() {
 		circleList.clear();
-		for (Iterator iter = dataManager.circleQuery().iterator(); iter.hasNext(); ) {
+		for (Iterator iter = dataManager.circleQueryAll().iterator(); iter.hasNext(); ) {
 			Circle circle = (Circle) iter.next();
 			if (circle.belongPlace == selectPlace) {
 				circleList.add(circle);
@@ -180,10 +174,10 @@ public class MainActivity extends ActionBarActivity {
 
 	public static void setRestaurant() {
 		restaurantList.clear();
-		for (Iterator iter = dataManager.restaurantQuery().iterator(); iter.hasNext(); ) {
+		for (Iterator iter = dataManager.restaurantQueryAll().iterator(); iter.hasNext(); ) {
 			Restaurant restaurant = (Restaurant) iter.next();
 			if (restaurant.belongCircle == selectCircle) {
-				restaurantList.add(restaurant.name);
+				restaurantList.add(restaurant);
 			}
 		}
 	}
@@ -200,9 +194,9 @@ public class MainActivity extends ActionBarActivity {
 			circleListView.setVisibility(View.INVISIBLE);
 			placeListView.startAnimation(myAnimation.getToRightAnimation());
 			placeListView.setVisibility(View.VISIBLE);
-			circleList =new ArrayList<>();
-			circleListViewAdapter = new CircleListViewAdapter(this, circleList, circleListView, restaurantListView);
-			circleListView.setAdapter(circleListViewAdapter);
+//			circleList =new ArrayList<>();
+//			circleListViewAdapter = new CircleListViewAdapter(this, circleList, circleListView, restaurantListView);
+//			circleListView.setAdapter(circleListViewAdapter);
 		}else if(currentPage ==3){
 			RandomResult.setVisibility(View.GONE);
 			currentPage =2;
@@ -217,9 +211,9 @@ public class MainActivity extends ActionBarActivity {
 			setStarButton.startAnimation(myAnimation.getButtonDown());
 			getStarButton.startAnimation(myAnimation.getButtonUp());
 			getStarButton.setVisibility(View.VISIBLE);
-			restaurantList = new ArrayList<>();
-			checkBoxAdapter = new CheckBoxAdapter(this, restaurantList);
-			restaurantListView.setAdapter(checkBoxAdapter);
+//			restaurantList = new ArrayList<>();
+//			checkBoxAdapter = new CheckBoxAdapter(this, restaurantList);
+//			restaurantListView.setAdapter(checkBoxAdapter);
 		}
 		return false;
 	}
@@ -239,5 +233,28 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+
+
+	private Point getLocationInView(View src, View target) {
+		final int[] l0 = new int[2];
+		src.getLocationOnScreen(l0);
+
+		final int[] l1 = new int[2];
+		target.getLocationOnScreen(l1);
+
+		l1[0] = l1[0] - l0[0] + target.getWidth() / 2;
+		l1[1] = l1[1] - l0[1] + target.getHeight() / 2;
+
+		return new Point(l1[0], l1[1]);
+	}
+
+	private int getColor(View view) {
+		return Color.parseColor((String) view.getTag());
+	}
+
+
+
+
 
 }

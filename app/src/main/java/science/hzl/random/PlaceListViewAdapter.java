@@ -69,6 +69,7 @@ public class PlaceListViewAdapter extends BaseAdapter {
 					placeListView.setVisibility(View.INVISIBLE);
 					MainActivity.selectPlace = buttons.get(position)._id;
 					MainActivity.setCircle();
+					MainActivity.circleListViewAdapter.notifyDataSetChanged();
 					circleListView.setVisibility(View.VISIBLE);
 					circleListView.startAnimation(myAnimation.getBeBigAndAppear());
 				}

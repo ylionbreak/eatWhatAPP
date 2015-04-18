@@ -23,11 +23,11 @@ import java.util.List;
 public class CircleListViewAdapter extends BaseAdapter {
 
 	ListView circleListView;
-	RestaurantListView restaurantListView;
+	ListView restaurantListView;
 	private LayoutInflater mInflater;
 	private List<Circle> circleList;
 
-	public CircleListViewAdapter(Context context, List<Circle> _circleList, ListView _circleListView, RestaurantListView _restaurantListView) {
+	public CircleListViewAdapter(Context context, List<Circle> _circleList, ListView _circleListView, ListView _restaurantListView) {
 		this.mInflater = LayoutInflater.from(context);
 		this.circleList = _circleList;
 		this.circleListView= _circleListView;
@@ -57,7 +57,7 @@ public class CircleListViewAdapter extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 
 		ViewHolder holder = null;
-		if (convertView == null) {
+//		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = mInflater.inflate(R.layout.button_layout, null);
 			holder.button = (Button) convertView.findViewById(R.id.listview_button);
@@ -71,6 +71,7 @@ public class CircleListViewAdapter extends BaseAdapter {
 					circleListView.setVisibility(View.GONE);
 					MainActivity.selectCircle = circleList.get(position)._id;
 					MainActivity.setRestaurant();
+					MainActivity.checkBoxAdapter.notifyDataSetChanged();
 					restaurantListView.setVisibility(View.VISIBLE);
 					restaurantListView.startAnimation(myAnimation.getBeBigAndAppear());
 					MainActivity.getResult.setVisibility(View.VISIBLE);
@@ -82,9 +83,9 @@ public class CircleListViewAdapter extends BaseAdapter {
 				}
 			});
 			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}
+//		} else {
+//			holder = (ViewHolder) convertView.getTag();
+//		}
 		return convertView;
 	}
 
