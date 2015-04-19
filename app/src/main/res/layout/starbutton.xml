@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/checkbox_layout"
+<LinearLayout android:id="@+id/button_layout"
               xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -8,14 +8,16 @@
               android:orientation="vertical"
               style="@style/Listview">
 
-    <CheckBox
-        android:id="@+id/checkbox"
-        style="@style/custom_checkbox"
-        android:layout_width="wrap_content"
+    <Button
+        style="@style/Listview"
+        android:id="@+id/star_listview_button"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:checked="true"
+        android:background="@android:color/transparent"
+        android:gravity="left"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
+        android:textColor="@android:color/white"
         android:text="  "
         android:textSize="20sp"/>
 

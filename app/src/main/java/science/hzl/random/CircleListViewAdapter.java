@@ -69,7 +69,7 @@ public class CircleListViewAdapter extends BaseAdapter {
 					MyAnimation myAnimation = new MyAnimation();
 					circleListView.startAnimation(myAnimation.getToLeftAnimation());
 					circleListView.setVisibility(View.GONE);
-					MainActivity.selectCircle = circleList.get(position)._id;
+					MainActivity.selectCircle = circleList.get(position).id;
 					MainActivity.setRestaurant();
 					MainActivity.checkBoxAdapter.notifyDataSetChanged();
 					restaurantListView.setVisibility(View.VISIBLE);
@@ -78,8 +78,7 @@ public class CircleListViewAdapter extends BaseAdapter {
 					MainActivity.getResult.startAnimation(myAnimation.getButtonUp());
 					MainActivity.setStarButton.setVisibility(View.VISIBLE);
 					MainActivity.setStarButton.startAnimation(myAnimation.getButtonUp());
-					MainActivity.getStarButton.startAnimation(myAnimation.getButtonDown());
-					MainActivity.getStarButton.setVisibility(View.INVISIBLE);
+
 				}
 			});
 			convertView.setTag(holder);

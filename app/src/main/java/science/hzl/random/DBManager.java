@@ -36,7 +36,7 @@ public class DBManager {
 	public void addPlace(Place place) {
 		db.beginTransaction();
 		try {
-			db.execSQL("INSERT INTO place VALUES(?, ?)", new Object[]{place._id, place.name});
+			db.execSQL("INSERT INTO place VALUES(?, ?)", new Object[]{place.id, place.name});
 			db.setTransactionSuccessful();
 		} finally {
 			db.endTransaction();
@@ -46,7 +46,7 @@ public class DBManager {
 	public void addCircle(Circle circle) {
 		db.beginTransaction();
 		try {
-			db.execSQL("INSERT INTO circle VALUES(?, ?, ?)", new Object[]{circle._id, circle.name, circle.belongPlace});
+			db.execSQL("INSERT INTO circle VALUES(?, ?, ?)", new Object[]{circle.id, circle.name, circle.belongPlace});
 			db.setTransactionSuccessful();
 		} finally {
 			db.endTransaction();
@@ -56,26 +56,26 @@ public class DBManager {
 	public void addRestaurant(Restaurant restaurant) {
 		db.beginTransaction();
 		try {
-			db.execSQL("INSERT INTO restaurant VALUES(?, ?, ?, ?)", new Object[]{restaurant._id, restaurant.name, restaurant.belongCircle,"1"});
+			db.execSQL("INSERT INTO restaurant VALUES(?, ?, ?, ?)", new Object[]{restaurant.id, restaurant.name, restaurant.belongCircle,"1"});
 			db.setTransactionSuccessful();
 		} finally {
 			db.endTransaction();
 		}
 	}
 
-	public void addStar(){
+	public void addStar(String name){
 		db.beginTransaction();
 		try {
-			db.execSQL("INSERT INTO star VALUES(null, ?)", new Object[]{selectCheckedIdToString()});
+			db.execSQL("INSERT INTO star VALUES(null, ?,?)", new Object[]{name,selectCheckedIdToString()});
 			db.setTransactionSuccessful();
 		} finally {
 			db.endTransaction();
 		}
 	}
 
-	public List<String> getStar(){
+	public List<String> getStarRestaurant(int id){
 		String string =new String();
-		Cursor c = db.rawQuery("SELECT * FROM star ", null );
+		Cursor c = db.rawQuery("SELECT * FROM star where _id = ?", new String[]{String.valueOf(id) } );
 		while (c.moveToNext()) {
 			string=c.getString( c.getColumnIndex("starrestaurant") );
 		}
@@ -87,12 +87,38 @@ public class DBManager {
 		return strings;
 	}
 
+//	public List<String> getStarName(){
+//		String string =new String();
+//		Cursor c = db.rawQuery("SELECT * FROM star ", null );
+//		while (c.moveToNext()) {
+//			string=c.getString( c.getColumnIndex("name") );
+//		}
+//		c.close();
+//		List<String> strings= new ArrayList<>();
+//		for(int i=0;i<=string.length()-2;i=i+2){
+//			strings.add(string.substring(i,i+2));
+//		}
+//		return strings;
+//	}
+
+	public List<String> getStarName(){
+		String string = new String();
+		List<String> strings= new ArrayList<>();
+		Cursor c = db.rawQuery("SELECT * FROM star ", null );
+		while (c.moveToNext()) {
+			string=c.getString( c.getColumnIndex("name") );
+			strings.add(string);
+		}
+		c.close();
+		return strings;
+	}
+
 	public List<Place> placeQueryAll() {
 		ArrayList<Place> places = new ArrayList<>();
 		Cursor c = db.rawQuery("SELECT * FROM place", null);
 		while (c.moveToNext()) {
 			Place place = new Place();
-			place._id = c.getInt(c.getColumnIndex("_id"));
+			place.id = c.getInt(c.getColumnIndex("_id"));
 			place.name = c.getString(c.getColumnIndex("name"));
 			places.add(place);
 		}
@@ -105,7 +131,7 @@ public class DBManager {
 		Cursor c = db.rawQuery("SELECT * FROM circle", null);
 		while (c.moveToNext()) {
 			Circle circle = new Circle();
-			circle._id = c.getInt(c.getColumnIndex("_id"));
+			circle.id = c.getInt(c.getColumnIndex("_id"));
 			circle.name = c.getString(c.getColumnIndex("name"));
 			circle.belongPlace = c.getInt(c.getColumnIndex("belongPlace"));
 			circles.add(circle);
@@ -119,7 +145,7 @@ public class DBManager {
 		Cursor c = db.rawQuery("SELECT * FROM restaurant ",null);
 		while (c.moveToNext()) {
 			Restaurant restaurant = new Restaurant();
-			restaurant._id = c.getInt(c.getColumnIndex("_id"));
+			restaurant.id = c.getInt(c.getColumnIndex("_id"));
 			restaurant.name = c.getString(c.getColumnIndex("name"));
 			restaurant.belongCircle = c.getInt(c.getColumnIndex("belongCircle"));
 			restaurants.add(restaurant);
@@ -128,14 +154,16 @@ public class DBManager {
 		return restaurants;
 	}
 
-	public List<String> restaurantQuery(List<String> strings) {
-		ArrayList<String> strings1 = new ArrayList<>();
+	public List<Restaurant> restaurantQuery(List<String> strings) {
+		ArrayList<Restaurant> strings1 = new ArrayList<>();
 
 		for (Iterator iter = strings.iterator(); iter.hasNext(); ) {
 
 			Cursor c = db.rawQuery("SELECT * FROM restaurant where _id =?", new String[]{(String) iter.next()});
 			while (c.moveToNext()) {
-				strings1.add(c.getString(c.getColumnIndex("name")));
+				Restaurant restaurant=new Restaurant();
+				restaurant.name=c.getString(c.getColumnIndex("name"));
+				strings1.add(restaurant);
 			}
 			c.close();
 
@@ -197,7 +225,7 @@ public class DBManager {
 		db.execSQL("CREATE TABLE IF NOT EXISTS place" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR)");
 		db.execSQL("CREATE TABLE IF NOT EXISTS circle" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR ,belongPlace INT)");
 		db.execSQL("CREATE TABLE IF NOT EXISTS restaurant" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR ,belongCircle INT,isCheck VARCHAR)");
-		db.execSQL("CREATE TABLE IF NOT EXISTS star" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, starrestaurant VARCHAR)");
+		db.execSQL("CREATE TABLE IF NOT EXISTS star" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR, starrestaurant VARCHAR)");
 	}
 	//加入数据库
 	public void add() {
@@ -226,4 +254,33 @@ public class DBManager {
 			e.printStackTrace();
 		}
 	}
+
+	public void refreshPlaceData(List<Place> object){
+		db.execSQL("drop TABLE IF EXISTS place ");
+		db.execSQL("CREATE TABLE IF NOT EXISTS place" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR)");
+		for (Iterator iter = object.iterator(); iter.hasNext(); ) {
+			Place place  =(Place)iter.next();
+			addPlace(place);
+		}
+	}
+
+	public void refreshCircleData(List<Circle> object){
+		db.execSQL("drop TABLE IF EXISTS circle");
+		db.execSQL("CREATE TABLE IF NOT EXISTS circle" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR ,belongPlace INT)");
+		for (Iterator iter = object.iterator(); iter.hasNext(); ) {
+			Circle circle  =(Circle)iter.next();
+			addCircle(circle);
+		}
+	}
+
+	public void refreshRestaurantData(List<Restaurant> object){
+		db.execSQL("drop TABLE IF EXISTS restaurant");
+		db.execSQL("CREATE TABLE IF NOT EXISTS restaurant" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR ,belongCircle INT,isCheck VARCHAR)");
+		for (Iterator iter = object.iterator(); iter.hasNext(); ) {
+			Restaurant restaurant =(Restaurant)iter.next();
+			addRestaurant(restaurant);
+		}
+	}
+
+
 }

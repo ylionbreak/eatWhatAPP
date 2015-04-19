@@ -1,12 +1,19 @@
 <resources>
 
-    <!-- Base application theme. -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:background">#FB8C00</item>
     </style>
 
+    <style name="my_actionbar_style" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">#FB8C00</item>
+    </style>
+    <style name="Listview" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
     <style name="custom_checkbox" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/my_checkbox</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>

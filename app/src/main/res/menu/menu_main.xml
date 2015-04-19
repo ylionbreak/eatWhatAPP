@@ -1,10 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
+      xmlns:menu="http://schemas.android.com/apk/res-auto"
       tools:context=".MainActivity">
-    <item
-        android:id="@+id/menu_add"
-        android:icon="@drawable/star_button"
-        android:showAsAction="always"
-        android:title="更新"/>
 
+      <item
+        menu:showAsAction="always"
+        android:id="@+id/refresh"
+        android:icon="@drawable/refresh_icon"
+        android:title="更新"/>
+    <item
+        menu:showAsAction="never"
+        android:id="@+id/me1"
+        android:title="本人第一次做，多多包涵！"/>
+    <item
+        menu:showAsAction="never"
+        android:id="@+id/me2"
+        android:title="有意帮我加数据或提建议的"/>
+    <item
+        menu:showAsAction="never"
+        android:id="@+id/me3"
+        android:title="请加QQ:739437820^。^"/>
 </menu>

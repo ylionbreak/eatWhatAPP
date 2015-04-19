@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by YLion on 2015/4/12.
  */
 public class MySQLite extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME = "te.db";
+	private static final String DATABASE_NAME = "store2.db";
 	private static final int DATABASE_VERSION = 1;
 
 	public MySQLite(Context context) {
@@ -39,7 +39,7 @@ public class MySQLite extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE IF NOT EXISTS place" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR)");
 		db.execSQL("CREATE TABLE IF NOT EXISTS circle" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR ,belongPlace INT)");
 		db.execSQL("CREATE TABLE IF NOT EXISTS restaurant" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR ,belongCircle INT, isCheck VARCHAR)");
-		db.execSQL("CREATE TABLE IF NOT EXISTS star" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, starrestaurant VARCHAR)");
+		db.execSQL("CREATE TABLE IF NOT EXISTS star" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR,starrestaurant VARCHAR)");
 	}
 
 	@Override

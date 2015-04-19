@@ -87,7 +87,9 @@
     <orderEntry type="library" exported="" name="android-ui-1.2" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
+    <orderEntry type="library" exported="" name="Bmob_Push_V0.6beta_20150408" level="project" />
     <orderEntry type="library" exported="" name="xmlpull_1_0_5" level="project" />
+    <orderEntry type="library" exported="" name="BmobSDK_V3.3.5_0408" level="project" />
   </component>
 </module>
 

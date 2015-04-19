@@ -7,9 +7,12 @@
     <circle id="1" name="商业街" belongPlace="1" />
     <circle id="2" name="顺江" belongPlace="1" />
     <circle id="3" name="龙湖" belongPlace="1" />
-    <circle id="4" name="思学苑" belongPlace="1" />
-    <circle id="5" name="银杏苑" belongPlace="1" />
-    <circle id="6" name="第五大道" belongPlace="2" />
+    <circle id="4" name="校内饭堂" belongPlace="1" />
+
+    <circle id="5" name="建设巷" belongPlace="2" />
+    <circle id="6" name="校内" belongPlace="2" />
+    <circle id="7" name="财富又一城" belongPlace="2" />
+    <circle id="8" name="sm广场" belongPlace="2" />
 
     <restaurant id="1" name="三道宴" belongCircle="1" category="综合"  way="点菜"/>
     <restaurant id="2" name="香辣食府" belongCircle="1" category="综合"  way="点菜"/>
@@ -59,11 +62,111 @@
     <restaurant id="44" name="学子餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
     <restaurant id="45" name="思源餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
     <restaurant id="46" name="家园餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
+    <restaurant id="47" name="银桦餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
+    <restaurant id="48" name="紫荆餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
+    <restaurant id="49" name="芙蓉餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
+    <restaurant id="50" name="清真餐厅" belongCircle="4" category="饭堂"  way="一人一份"/>
 
-    <restaurant id="47" name="银桦餐厅" belongCircle="5" category="饭堂"  way="一人一份"/>
-    <restaurant id="48" name="紫荆餐厅" belongCircle="5" category="饭堂"  way="一人一份"/>
-    <restaurant id="49" name="芙蓉餐厅" belongCircle="5" category="饭堂"  way="一人一份"/>
-    <restaurant id="50" name="旁边清真餐厅" belongCircle="5" category="饭堂"  way="一人一份"/>
+    <restaurant id="51" name="阳光" belongCircle="6" category="饭堂"  way="一人一份"/>
+    <restaurant id="52" name="风华" belongCircle="6" category="饭堂"  way="一人一份"/>
+    <restaurant id="53" name="万友" belongCircle="6" category="饭堂"  way="一人一份"/>
+    <restaurant id="54" name="桂苑一层" belongCircle="6" category="饭堂"  way="一人一份"/>
+    <restaurant id="55" name="桂苑二层" belongCircle="6" category="饭堂"  way="一人一份"/>
 
-    
+    <restaurant id="56" name="重庆老裹裹老火锅" belongCircle="5" category=""  way=""/>
+    <restaurant id="57" name="重庆渝宗燚老火锅" belongCircle="5" category=""  way=""/>
+    <restaurant id="58" name="山城风串串王" belongCircle="5" category=""  way=""/>
+    <restaurant id="59" name="一洋刺身" belongCircle="5" category=""  way=""/>
+    <restaurant id="60" name="Obba炸鸡" belongCircle="5" category=""  way=""/>
+    <restaurant id="61" name="兮兮小吃屋" belongCircle="5" category=""  way=""/>
+    <restaurant id="62" name="11号喵酱" belongCircle="5" category=""  way=""/>
+    <restaurant id="63" name="徐亮胖哥烤蹄" belongCircle="5" category=""  way=""/>
+    <restaurant id="64" name="口口香烤羊蹄" belongCircle="5" category=""  way=""/>
+    <restaurant id="65" name="高姐锡纸烤脑花" belongCircle="5" category=""  way=""/>
+    <restaurant id="66" name="一盏灯" belongCircle="5" category=""  way=""/>
+    <restaurant id="67" name="眼哥铁板烧" belongCircle="5" category=""  way=""/>
+    <restaurant id="68" name="正宗西安肉夹馍" belongCircle="5" category=""  way=""/>
+    <restaurant id="69" name="士林小弟" belongCircle="5" category=""  way=""/>
+    <restaurant id="70" name="随食即递" belongCircle="5" category=""  way=""/>
+    <restaurant id="71" name="臭味相投" belongCircle="5" category=""  way=""/>
+    <restaurant id="72" name="福建沙县小吃" belongCircle="5" category=""  way=""/>
+    <restaurant id="73" name="YOYO手工酸奶主题店" belongCircle="5" category=""  way=""/>
+    <restaurant id="74" name="来一碗老冒菜" belongCircle="5" category=""  way=""/>
+    <restaurant id="75" name="翅味鲜" belongCircle="5" category=""  way=""/>
+    <restaurant id="76" name="堡格垒" belongCircle="5" category=""  way=""/>
+    <restaurant id="77" name="燊记石烤火山石烤鱿鱼" belongCircle="5" category=""  way=""/>
+    <restaurant id="78" name="江湖冒菜" belongCircle="5" category=""  way=""/>
+
+    <restaurant id="79" name="赛百味" belongCircle="8" category=""  way=""/>
+    <restaurant id="80" name="竹篓记冒菜世家" belongCircle="8" category=""  way=""/>
+    <restaurant id="81" name="席罐罐罐饭" belongCircle="8" category=""  way=""/>
+    <restaurant id="143" name="雷门火锅" belongCircle="8" category=""  way=""/>
+    <restaurant id="82" name="人间食话" belongCircle="8" category=""  way=""/>
+    <restaurant id="83" name="禾木酒楼" belongCircle="8" category=""  way=""/>
+    <restaurant id="84" name="厕所串串" belongCircle="8" category=""  way=""/>
+    <restaurant id="85" name="辣芙蓉三汁焖锅" belongCircle="8" category=""  way=""/>
+    <restaurant id="86" name="比格自助比萨" belongCircle="8" category=""  way=""/>
+    <restaurant id="87" name="汉丽轩韩式自助烤肉" belongCircle="8" category=""  way=""/>
+    <restaurant id="88" name="鹤桥炭火烤肉" belongCircle="8" category=""  way=""/>
+    <restaurant id="89" name="蜀景宴飨" belongCircle="8" category=""  way=""/>
+    <restaurant id="90" name="任吉老砂锅" belongCircle="8" category=""  way=""/>
+    <restaurant id="91" name="好利来" belongCircle="8" category=""  way=""/>
+    <restaurant id="92" name="滋滋烤鱼" belongCircle="8" category=""  way=""/>
+    <restaurant id="94" name="蜀九香火锅酒楼" belongCircle="8" category=""  way=""/>
+    <restaurant id="93" name="一味轩" belongCircle="8" category=""  way=""/>
+    <restaurant id="95" name="乡村基" belongCircle="8" category=""  way=""/>
+    <restaurant id="96" name="酒窝甜品" belongCircle="8" category=""  way=""/>
+
+    <restaurant id="97" name="爷茶" belongCircle="7" category=""  way=""/>
+    <restaurant id="98" name="加太贺韩国烤肉" belongCircle="7" category=""  way=""/>
+    <restaurant id="99" name="滋味烤鱼店" belongCircle="7" category=""  way=""/>
+    <restaurant id="100" name="炭阁" belongCircle="7" category=""  way=""/>
+    <restaurant id="101" name="小馋院" belongCircle="7" category=""  way=""/>
+    <restaurant id="102" name="席罐罐罐饭" belongCircle="7" category=""  way=""/>
+    <restaurant id="103" name="九锅一堂" belongCircle="7" category=""  way=""/>
+    <restaurant id="104" name="莲裳房子泰式海鲜火锅" belongCircle="7" category=""  way=""/>
+    <restaurant id="105" name="渔猫子木桶鱼" belongCircle="7" category=""  way=""/>
+    <restaurant id="106" name="良木缘咖啡西餐" belongCircle="7" category=""  way=""/>
+    <restaurant id="107" name="老房子民风酒楼·枕水格调" belongCircle="7" category=""  way=""/>
+    <restaurant id="108" name="味趣煎饼" belongCircle="7" category=""  way=""/>
+    <restaurant id="109" name="大米先生" belongCircle="7" category=""  way=""/>
+    <restaurant id="110" name="一品涮" belongCircle="7" category=""  way=""/>
+    <restaurant id="111" name="韩太郎韩国海鲜自助烤肉吧" belongCircle="7" category=""  way=""/>
+    <restaurant id="112" name="金汉斯" belongCircle="7" category=""  way=""/>
+    <restaurant id="113" name="何师烧烤" belongCircle="7" category=""  way=""/>
+    <restaurant id="114" name="味牛炭火烤肉" belongCircle="7" category=""  way=""/>
+    <restaurant id="115" name="味千拉面" belongCircle="7" category=""  way=""/>
+    <restaurant id="116" name="赛百味" belongCircle="7" category=""  way=""/>
+    <restaurant id="117" name="尊品牛排馆" belongCircle="7" category=""  way=""/>
+    <restaurant id="118" name="探C-炭火干锅" belongCircle="7" category=""  way=""/>
+
+    <restaurant id="119" name="银格顿牛排半自助餐厅" belongCircle="3" category=""  way=""/>
+    <restaurant id="120" name="大嘴霸王排骨" belongCircle="3" category=""  way=""/>
+    <restaurant id="121" name="清迈印象泰式自助火锅" belongCircle="3" category=""  way=""/>
+    <restaurant id="122" name="绝城芋儿鸡 " belongCircle="3" category=""  way=""/>
+    <restaurant id="123" name="好伦哥" belongCircle="3" category=""  way=""/>
+    <restaurant id="124" name="三国炙涮烤自助" belongCircle="3" category=""  way=""/>
+    <restaurant id="125" name="夏沐披萨" belongCircle="3" category=""  way=""/>
+    <restaurant id="126" name="犀利锅" belongCircle="3" category=""  way=""/>
+    <restaurant id="127" name="巴蜀崽火锅" belongCircle="3" category=""  way=""/>
+    <restaurant id="128" name="寻味烤鱼" belongCircle="3" category=""  way=""/>
+    <restaurant id="129" name="一纸馋自助烤肉·火锅" belongCircle="3" category=""  way=""/>
+    <restaurant id="130" name="仟百度自助烤肉" belongCircle="3" category=""  way=""/>
+    <restaurant id="131" name="汉釜宫韩式烤肉" belongCircle="3" category=""  way=""/>
+    <restaurant id="132" name="广福记冒菜" belongCircle="3" category=""  way=""/>
+    <restaurant id="133" name="食侠客黄焖鸡" belongCircle="3" category=""  way=""/>
+    <restaurant id="134" name="瑞余烤鱼堂" belongCircle="3" category=""  way=""/>
+    <restaurant id="135" name="嘛啦啦冒菜" belongCircle="3" category=""  way=""/>
+    <restaurant id="136" name="香八方自助涮烤吧" belongCircle="3" category=""  way=""/>
+    <restaurant id="137" name="泰美·格调餐厅" belongCircle="3" category=""  way=""/>
+    <restaurant id="138" name="千椒百味火锅" belongCircle="3" category=""  way=""/>
+    <restaurant id="139" name="渔翁传奇老字号鱼火锅" belongCircle="3" category=""  way=""/>
+    <restaurant id="140" name="乡村基" belongCircle="3" category=""  way=""/>
+    <restaurant id="141" name="三国炙烤肉" belongCircle="3" category=""  way=""/>
+    <restaurant id="142" name="三顾冒菜" belongCircle="3" category=""  way=""/>
+
+
+
+
+
 </resourse>

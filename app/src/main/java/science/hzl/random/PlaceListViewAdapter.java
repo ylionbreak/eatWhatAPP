@@ -1,16 +1,9 @@
 package science.hzl.random;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -67,9 +60,11 @@ public class PlaceListViewAdapter extends BaseAdapter {
 					MyAnimation myAnimation = new MyAnimation();
 					placeListView.startAnimation(myAnimation.getToLeftAnimation());
 					placeListView.setVisibility(View.INVISIBLE);
-					MainActivity.selectPlace = buttons.get(position)._id;
+					MainActivity.selectPlace = buttons.get(position).id;
 					MainActivity.setCircle();
 					MainActivity.circleListViewAdapter.notifyDataSetChanged();
+					MainActivity.getStarButton.startAnimation(myAnimation.getButtonDown());
+					MainActivity.getStarButton.setVisibility(View.INVISIBLE);
 					circleListView.setVisibility(View.VISIBLE);
 					circleListView.startAnimation(myAnimation.getBeBigAndAppear());
 				}
